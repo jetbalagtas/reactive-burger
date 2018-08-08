@@ -12,7 +12,10 @@ class App extends Component {
         <Layout>
           <Switch>
             <Route path='/checkout' component={Checkout} />
-            <Route path='/' exact component={BurgerBuilder} /> {/* exact not required with Switch */}
+            <Route path='/' exact component={BurgerBuilder} />
+            {/* exact not required with Switch */}
+            {/* only direct components loaded by the router get special props */}
+            {/* to access special props from a child component (ie. Burger), wrap the child export with 'withRouter' hoc. see Burger.js */}
           </Switch>
         </Layout>
       </div>
