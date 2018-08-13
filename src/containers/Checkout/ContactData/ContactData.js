@@ -41,11 +41,11 @@ class ContactData extends Component {
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          minLength: 5,
+          maxLength: 5
         },
-        valid: false,
-        minLength: 5,
-        maxLength: 5
+        valid: false
       },
       state: {
         elementType: 'input',
