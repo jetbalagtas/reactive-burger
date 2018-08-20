@@ -20,19 +20,10 @@ class BurgerBuilder extends Component {
   // a bit more 'modern' way of adding state:
   state = {
     purchasing: false,
-    loading: false,
-    error: false
   }
 
   componentDidMount () {
     console.log(this.props);
-    axios.get('https://reactive-burger-jet.firebaseio.com/ingredients.json')
-    .then(response => {
-      this.setState({ingredients: response.data});
-    })
-    .catch(error => {
-      this.setState({error: true});
-    });
   }
 
   updatePurchaseState (ingredients) {
@@ -85,9 +76,6 @@ class BurgerBuilder extends Component {
         price={this.props.price}
         purchaseCancelled={this.purchaseCancelHandler}
         purchaseContinued={this.purchaseContinueHandler} />;
-    }
-    if (this.state.loading) {
-      orderSummary = <Spinner />;
     }
     // ex. {salad: true, meat: false, ...}
     return (
