@@ -64,13 +64,13 @@ class BurgerBuilder extends Component {
       burger = (
         <Aux>
           <Burger ingredients={this.props.ings} />
-            <BuildControls
-              ingredientAdded={this.props.onAddIngredient}
-              ingredientRemoved={this.props.onRemoveIngredient}
-              disabled={disabledInfo}
-              price={this.props.price}
-              ordered={this.purchaseHandler}
-              purchasable={this.updatePurchaseState(this.props.ings)} />
+          <BuildControls
+            ingredientAdded={this.props.onAddIngredient}
+            ingredientRemoved={this.props.onRemoveIngredient}
+            disabled={disabledInfo}
+            price={this.props.price}
+            ordered={this.purchaseHandler}
+            purchasable={this.updatePurchaseState(this.props.ings)} />
         </Aux>
       );
       orderSummary = <OrderSummary
