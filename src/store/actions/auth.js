@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as keys from './apiKeys';
 
 import * as actionTypes from './actionTypes';
 
@@ -30,7 +31,8 @@ export const auth = (email, password) => {
       password: password,
       returnSecureToken: true
     }
-    axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=[API_key]', authData)
+    const key = keys.newUserAPIKey;
+    axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + key, authData)
     .then(response => {
       console.log(response);
       dispatch(authSuccess(response.data));
