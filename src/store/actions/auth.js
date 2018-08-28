@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as keys from './apiKeys';
+import * as keys from '../../apiKeys';
 
 import * as actionTypes from './actionTypes';
 
