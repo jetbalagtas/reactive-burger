@@ -15,7 +15,7 @@ class App extends Component {
           <Switch>
             <Route path='/checkout' component={Checkout} />
             <Route path='/orders' component={Orders} />
-            <Route path='/auth' component={Auth} />
+            <Route path='/sign-in' component={Auth} />
             <Route path='/' exact component={BurgerBuilder} />
             {/* exact not required with Switch */}
             {/* only direct components loaded by the router get special props */}
