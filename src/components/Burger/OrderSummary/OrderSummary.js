@@ -4,13 +4,6 @@ import Aux from '../../../hoc/Aux/Aux';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
-  // This does not have to be a class. Can be a functional component. Leaving here for debugging & reference.
-  // The Modal component is where we check if the OrderSummary needs to be updated.
-  // This is because the Modal wraps the OrderSummary in the BurgerBuilder.
-  componentWillUpdate () {
-    console.log('[OrderSummary] WillUpdate');
-  }
-
   render () {
     const ingredientSummary = Object.keys(this.props.ingredients)
     .map(igKey => {
