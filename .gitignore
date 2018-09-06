@@ -22,3 +22,8 @@ yarn-error.log*
 
 # keys
 /src/apiKeys.js
+
+# firebase deployment
+.firebase/
+.firebaserc
+firebase.json
