@@ -116,11 +116,11 @@ class Auth extends Component {
         {errorMessage}
         <form onSubmit={this.submitHandler}>
           {form}
-          <Button btnType='Success'>SUBMIT</Button>
+          <Button btnType='Success'>{this.state.isSignup ? 'Create Account' : 'Sign-in'}</Button>
         </form>
         <Button
           clicked={this.switchAuthModeHandler}
-          btnType='Danger'>{this.state.isSignup ? 'Already have an account? Sign-in' : 'Create Account'}</Button>
+          btnType='Danger'>{this.state.isSignup ? 'Already have an account? Sign-in' : 'New user? Create Account'}</Button>
       </div>
     );
   }
