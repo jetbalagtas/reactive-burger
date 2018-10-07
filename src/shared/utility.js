@@ -1,3 +1,7 @@
+/** @desc Updates the state object
+ * @param oldObject state object to be updated
+ * @param updatedProperties object with udpated the property(ies)
+ */
 export const updateObject = (oldObject, updatedProperties) => {
   return {
     ...oldObject,
@@ -5,6 +9,10 @@ export const updateObject = (oldObject, updatedProperties) => {
   };
 };
 
+/** @desc Checks the validity of values entered in inputs
+ * @param value event.target.value
+ * @param rules (object)
+ */
 export const checkValidity = (value, rules) => {
   let isValid = true;
   if (!rules) {
