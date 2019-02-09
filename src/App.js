@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import asyncComponent from './hoc/asyncComponent/asyncComponent';
@@ -20,44 +20,42 @@ const asyncAuth = asyncComponent(() => {
   return import('./containers/Auth/Auth');
 });
 
-class App extends Component {
-  componentDidMount () {
-    this.props.onTryAutoSignin();
-  }
+const app = props => {
+  useEffect(() => {
+    props.onTryAutoSignin();
+  }, []);
 
-  render() {
-    let routes = (
+  let routes = (
+    <Switch>
+      <Route path='/sign-in' component={asyncAuth} />
+      <Route path='/' exact component={BurgerBuilder} />
+      <Redirect to='/' /> {/* redirect unknown routes to home */}
+    </Switch>
+  );
+
+  if (props.isAuthenticated) {
+    routes = (
       <Switch>
+        <Route path='/checkout' component={asyncCheckout} />
+        <Route path='/orders' component={asyncOrders} />
+        <Route path='/logout' component={Logout} />
         <Route path='/sign-in' component={asyncAuth} />
         <Route path='/' exact component={BurgerBuilder} />
         <Redirect to='/' /> {/* redirect unknown routes to home */}
+        {/* exact not required with Switch */}
+        {/* only direct components loaded by the router get special props */}
+        {/* to access special props from a child component (ie. Burger), wrap the child export with 'withRouter' hoc. see Burger.js */}
       </Switch>
     );
-
-    if (this.props.isAuthenticated) {
-      routes = (
-        <Switch>
-          <Route path='/checkout' component={asyncCheckout} />
-          <Route path='/orders' component={asyncOrders} />
-          <Route path='/logout' component={Logout} />
-          <Route path='/sign-in' component={asyncAuth} />
-          <Route path='/' exact component={BurgerBuilder} />
-          <Redirect to='/' /> {/* redirect unknown routes to home */}
-          {/* exact not required with Switch */}
-          {/* only direct components loaded by the router get special props */}
-          {/* to access special props from a child component (ie. Burger), wrap the child export with 'withRouter' hoc. see Burger.js */}
-        </Switch>
-      );
-    }
-
-    return (
-      <div>
-        <Layout>
-          {routes}
-        </Layout>
-      </div>
-    );
   }
+
+  return (
+    <div>
+      <Layout>
+        {routes}
+      </Layout>
+    </div>
+  );  
 }
 
 const mapStateToProps = state => {
@@ -72,4 +70,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(app));
